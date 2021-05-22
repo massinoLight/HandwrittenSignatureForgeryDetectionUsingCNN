@@ -1,6 +1,4 @@
-/*
 
-*/
 
 $.pressureConfig({
   polyfill: false
@@ -16,11 +14,27 @@ var block = {
 
  change: function(force, event) {
      //event.preventDefault();
-     var endTime = new Date().getTime();
+     //var endTime = new Date().getTime();
 
     //this.style.width = Pressure.map(force, 0, 1, 200, 300) + 'px';
     //this.innerHTML = force;
-    console.log('X', event.clientX,'Y', event.clientY,'Pression', force,(endTime-startTime),'ms');
+    //console.log('X', event.clientX,'Y', event.clientY,'Pression', force,(endTime-startTime),'ms');
+
+
+    someElement.addEventListener('pointerdown', function(event) {
+  if (event.pressure == 0) {
+    // No pressure
+    process_no_pressure(event);
+  } else if (event.pressure == 1) {
+    // Maximum pressure
+    process_max_pressure(event);
+  } else {
+    // Default
+    process_pressure(event);
+  }
+}, false);
+
+
 
 
   },
